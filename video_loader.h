@@ -13,8 +13,10 @@ class VideoLoader
 
   std::string GetLocalPath(const std::string& url);
 
- private:
   std::string DownloadVideo(const std::string& url);
+
+  
+ private:
 
   QSqlDatabase db_;
   std::string target_directory_;

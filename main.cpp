@@ -21,7 +21,16 @@ int main(int argc, char *argv[])
 {
   QGuiApplication app(argc, argv);
   const std::string video_path = "C:/Users/marki/Videos/smash0.mp4";
-  //write_test_image(video_path);
+
+  {
+    // Need to intialize the app db with the correct tables
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("ssbm-labler.db");
+    VideoLoader video_loader { app.applicationDirPath().toStdString(), db };
+
+    video_loader.DownloadVideo("https://www.youtube.com/watch?v=-OMZm1wyCVQ");
+  }
 
   VideoSeekerImageProvider* video_seeker_image_provider =
   new VideoSeekerImageProvider { video_path };
