@@ -1,4 +1,7 @@
 QT += quick
+QT += sql
+QT += core
+
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -15,7 +18,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 INCLUDEPATH += $$PWD/external/video-seeker/include
 LIBS += -L$$PWD/external/video-seeker/lib/ -lvideo-seeker
 LIBS += -L$$PWD/external/ffmpeg/lib/ -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lpostproc -lswresample -lswscale
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    video_loader.cpp
 
 RESOURCES += qml.qrc
 
@@ -31,4 +35,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    video_seeker_image_provider.h
+    video_seeker_image_provider.h \
+    video_loader.h

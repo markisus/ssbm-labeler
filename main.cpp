@@ -1,8 +1,10 @@
+#include <QDebug>
 #include <QGuiApplication>
+#include <QImage>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <QDebug>
-#include <QImage>
+
+#include "video_loader.h"
 #include "video_seeker_image_provider.h"
 
 void write_test_image(const std::string& video_path) {
