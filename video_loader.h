@@ -12,11 +12,10 @@ class VideoLoader
               const QSqlDatabase& db);
 
   std::string GetLocalPath(const std::string& url);
-
-  std::string DownloadVideo(const std::string& url);
-
   
  private:
+  void InstallTableIfNotExists();
+  std::string DownloadVideo(const std::string& url);
 
   QSqlDatabase db_;
   std::string target_directory_;

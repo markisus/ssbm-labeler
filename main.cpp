@@ -7,6 +7,8 @@
 #include "video_loader.h"
 #include "video_seeker_image_provider.h"
 
+const char* SSBM_DB_FILENAME = "ssbm-labler.db";
+
 void write_test_image(const std::string& video_path) {
     lius_tools::VideoSeeker seeker{video_path};
     QImage result {
@@ -24,12 +26,12 @@ int main(int argc, char *argv[])
 
   {
     // Need to intialize the app db with the correct tables
-
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("ssbm-labler.db");
+    db.setDatabaseName(SSBM_DB_FILENAME);
     VideoLoader video_loader { app.applicationDirPath().toStdString(), db };
-
-    video_loader.DownloadVideo("https://www.youtube.com/watch?v=-OMZm1wyCVQ");
+    std::string local_path =
+        video_loader.GetLocalPath("https://www.youtube.com/watch?v=-OMZm1wyCVQ");
+    qDebug() << "Local path to video " << local_path.c_str();
   }
 
   VideoSeekerImageProvider* video_seeker_image_provider =
